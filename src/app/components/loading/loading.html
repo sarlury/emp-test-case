@@ -1,0 +1,8 @@
+ @if (activeState()) {
+      <div class="backdrop" role="alert" aria-busy="true" aria-live="polite">
+        <div class="box" aria-label="Loading">
+          <div class="spinner"></div>
+          <div class="label">{{ label() }}</div>
+        </div>
+      </div>
+    }

@@ -1,0 +1,77 @@
+<app-loading [active]="loading()" text="Mohon tunggu…"></app-loading>
+<div class="container">
+    <div class="header">
+        <h1>Employee List</h1>
+        <div class="logout" (click)="logout()">Logout</div>
+    </div>
+    <div class="table-filter">
+        <div class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" class="input-search" [(ngModel)]="searchValue" placeholder="Search by First Name"
+                (input)="dt1.filter($event.target.value, 'firstName', 'contains')" />
+        </div>
+
+        <div class="p-input-icon-left">
+            <i class="pi pi-filter"></i>
+            <select class="status-filter" [(ngModel)]="selectedStatus" (change)="onStatusChange($event)">
+                <option value="">Filter by Status</option>
+                <option *ngFor="let opt of statusOptions" [value]="opt.value">
+                    {{ opt.label }}
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn trans" (click)="clearSearch(dt1)">Clear</button>
+        <button type="submit" class="btn primary" (click)="onAddEmployee()">Create Employee</button>
+    </div>
+
+    <p-table #dt1 [value]="employees" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[5, 10, 20]" [globalFilterFields]="['firstName', 'status']">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="no" style="width: 10%">No</th>
+                <th pSortableColumn="firstName" style="width: 20%">
+                    Name <p-sortIcon field="firstName" />
+                </th>
+                <th pSortableColumn="group" style="width: 20%">
+                    Group <p-sortIcon field="group" />
+                </th>
+                <th pSortableColumn="email" style="width: 25%">
+                    Email <p-sortIcon field="email" />
+                </th>
+                <th pSortableColumn="status" style="width: 15%">
+                    Status <p-sortIcon field="status" />
+                </th>
+                <th style="width: 15%">
+                    Action
+                </th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-emp let-i="rowIndex">
+            <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+                <td>{{ emp.group }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.status }}</td>
+                <td>
+                   <button pButton 
+                          icon="pi pi-pencil" 
+                          class="p-button-rounded p-button-warning p-button-text me-2"
+                          pTooltip="Edit" 
+                          tooltipPosition="top"
+                          (click)="editEmployee(emp)">
+                  </button>
+                  <button pButton 
+                          icon="pi pi-trash" 
+                          class="p-button-rounded p-button-danger p-button-text me-2"
+                          pTooltip="Delete" 
+                          tooltipPosition="top"
+                          (click)="delete()">
+                  </button>
+                <button type="submit" class="btn trans" (click)="viewEmployeeDetail(emp)">Detail</button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

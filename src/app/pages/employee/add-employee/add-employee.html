@@ -1,0 +1,90 @@
+<app-loading [active]="loading()" text="Mohon tunggu…"></app-loading>
+<form class="emp-form" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <h2 class="section-title">Add Employee</h2>
+
+  <div class="grid">
+    <div class="field">
+      <label>First Name</label>
+      <input type="text" formControlName="firstName" placeholder="Jemy" />
+      <small *ngIf="isInvalid('firstName')">First name is required.</small>
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="jemy@mail.com" />
+      <small *ngIf="isInvalid('email')">Valid email is required.</small>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" formControlName="username" placeholder="jemy001" />
+      <small *ngIf="isInvalid('username')">Username is required.</small>
+    </div>
+
+    <div class="field">
+      <label>Birth Date & Time</label>
+      <input
+        type="datetime-local"
+        formControlName="birthDate"
+        [max]="today"
+      />
+      <small *ngIf="isInvalid('birthDate')">Birth date is required (≤ today).</small>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="field">
+      <label>Last Name</label>
+      <input type="text" formControlName="lastName" placeholder="Sarlury" />
+      <small *ngIf="isInvalid('lastName')">Last name is required.</small>
+    </div>
+
+    <div class="field">
+      <label>Status</label>
+      <input type="text" formControlName="status" placeholder="Active / Inactive" />
+      <small *ngIf="isInvalid('status')">Status is required.</small>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="field">
+      <label>Group</label>
+      <select formControlName="group">
+        <option value="" disabled>Select Group</option>
+        <option *ngFor="let g of groupOptions" [value]="g.value">{{ g.name }}</option>
+      </select>
+      <small *ngIf="isInvalid('group')">Group is required.</small>
+    </div>
+
+    <div class="field">
+      <label>Basic Salary</label>
+      <input type="number" formControlName="basicSalary" placeholder="1000000" />
+      <small *ngIf="isInvalid('basicSalary')">Basic salary (number) is required.</small>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="field">
+      <label>Description Date & Time</label>
+      <input
+        type="datetime-local"
+        formControlName="description"
+      />
+      <small *ngIf="isInvalid('description')">Description date is required.</small>
+    </div>
+
+    <div class="field note">
+      <label>Description</label>
+      <textarea placeholder="Description"></textarea>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="actions">
+    <button type="button" class="btn ghost" (click)="onCancel()">Cancel</button>
+    <button type="submit" class="btn primary">Create Employee</button>
+  </div>
+</form>

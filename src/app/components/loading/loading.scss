@@ -1,0 +1,65 @@
+:host {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 10, .55);
+    backdrop-filter: saturate(140%) blur(4px);
+    display: grid;
+    place-items: center;
+    pointer-events: all;
+}
+
+.spinner {
+    width: 72px;
+    height: 72px;
+    position: relative;
+    filter: drop-shadow(0 0 12px rgba(120, 160, 255, .35));
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+.spinner::before {
+    border: 3px solid rgba(255, 255, 255, .12);
+}
+.spinner::after {
+    --c: conic-gradient(from 0deg, #74a4ff 0 120deg, transparent 120deg 360deg);
+    background: var(--c);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 3px), #000 0);
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 3px), #000 0);
+    animation: spin 1s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(116, 164, 255, .45));
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.label {
+    margin-top: 18px;
+    color: #e8e8f0;
+    font: 500 0.95rem/1.2 system-ui, sans-serif;
+    opacity: .9;
+    text-align: center;
+}
+
+.box {
+    display: grid;
+    justify-items: center;
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(30, 33, 40, .55), rgba(18, 20, 26, .55));
+    border: 1px solid rgba(255, 255, 255, .08);
+}

@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #000;
+  padding: 1.5rem;
+}
+
+.login-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #9d4edd;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: 2px solid #9d4edd;
+  }
+}
+
+.btn-signin {
+  background-color: #9d4edd;
+  color: #fff;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #7b2cbf;
+  }
+}
+
+.err-msg {
+  font-size: 0.85rem;
+  color: #dc3545;
+  margin-top: 4px;
+}
+
+
+
+.login-right {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.login-right img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    flex-direction: row;
+    padding: 2rem;
+  }
+
+  .login-left {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  .login-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 90%;
+      max-width: 400px;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login-container {
+    padding: 3rem 5rem;
+  }
+
+  .login-left {
+    padding: 3rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .login-right img {
+    max-width: 500px;
+  }
+}
